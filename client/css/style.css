@@ -1,25 +1,15 @@
-html,body,div,p,a,ul,li{
+html,body,div,canvas{
+    margin: 0;
     padding: 0;
-    margin: 0
 }
 html,body{
     width: 100%;
     height: 100%;
 }
-.container{
-    position: relative;
-    width: 100%;
-    height: 100%;
-    background: #44f6f6
+#myCanvas{
+    background: #ccc;
 }
-.container .snack{
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: red;
-}
-.container .moveContainer{
+.moveContainer{
     position: fixed;
     bottom: 50px;
     left: 50%;
@@ -28,7 +18,7 @@ html,body{
     height: 100px;
     border-radius: 50%;
 }
-.container .moveContainer .touchBk{
+.moveContainer .touchBk{
     position: absolute;
     width: 100%;
     height: 100%;
@@ -36,7 +26,7 @@ html,body{
     background: #000;
     opacity: 0.3;
 }
-.container .moveContainer .touch{
+.moveContainer .touch{
     position: absolute;
     width: 50px;
     height: 50px;
@@ -47,4 +37,15 @@ html,body{
     background: #000;
     opacity: 0.6;
 }
-
+.foodScreen{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0;
+}
+.foodScreen .foodItem{
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+}
