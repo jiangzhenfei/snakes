@@ -31,7 +31,7 @@ let addRoom = (function(){
         }
         allRoom[room] = io.of(`/${room}`).on('connection', function (socket) {
            
-            allRoom[room].emit('foods', foods);//当前连接的推送而已
+            socket.emit('foods', foods);//当前连接的推送而已
             socket.on('foodIsEat',function(e){
                 let id = e;
                 allRoom[room].emit('_thisFoodEat', e);//推送给房间所有的人
