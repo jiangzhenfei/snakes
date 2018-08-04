@@ -2,6 +2,7 @@
 class Food {
     constructor( id,x,y ){
         this.food = null;
+        this.isEated = false;
         this.id = id;
         this.position = {
             x:x,
@@ -11,15 +12,13 @@ class Food {
     }
     //头部绘制位置
     draw(x,y){
-        this.food = $('<div class="foodItem"></div>')
-        this.food.css({
-            left: x,
-            top:  y,
-            backgroundColor:'red'
-        })
-        $('.foodScreen').append(this.food)
+        foodCtx.beginPath();
+        foodCtx.arc(x,y,2,0,2*Math.PI);
+        foodCtx.fillStyle = 'red';
+        //foodCtx.closePath();
+        foodCtx.fill();
     }
     remove( ){
-        this.food.remove()
+        foodCtx.clearRect(this.position.x-2,this.position.y-2,4,4);
     }
 }

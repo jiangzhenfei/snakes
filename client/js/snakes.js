@@ -23,13 +23,14 @@ class Snack {
     }
     //运动
     animate(){
+        start = +new Date()
         ctx.clearRect(0,0,1000,1000);
         
         this.dotAnimate()
         window.requestAnimationFrame( this.animate.bind(this) );
     }
     dotAnimate(){
-        while(this.position.length < this.dotArr.length * 20){
+        while(this.position.length < (this.dotArr.length *10 +10)){
             this.position.push({
                 x:0,
                 y:0
@@ -42,6 +43,9 @@ class Snack {
             x:x,
             y:y
         })
+        if( (time = (+new Date())-start)>10 ){
+            console.log(time)
+        }
         this.eatFood( x, y )
         //尾部扔掉旧数据
         this.position.pop()
@@ -53,9 +57,13 @@ class Snack {
         });//当前连接的推送而已
         this.dotUpdate()
         //
+        var time = 0;
+        
         for (var i in  Enemys){
             Enemys[i].update()
         }
+        
+       
         
     }
     //每个关节的重绘
@@ -76,9 +84,16 @@ class Snack {
     }
     //吃掉实物
     eatFood(x,y){
-        for (var i = 0; i < FoodArr.length; i++){
-            if( Math.pow(x - FoodArr[i].position.x + 2,2) + Math.pow(y - FoodArr[i].position.y + 2,2)<12*12 ){
-                socket.emit('foodIsEat', FoodArr[i].id)
+        let length = FoodArr.length
+        let max = 144;
+        for (var i = 0; i < length; i++){
+            let food = FoodArr[i]
+            if( food.isEated ){
+                continue;
+            }
+            if( Math.pow(x - (food.position.x + 2),2) + Math.pow(y - (food.position.y + 2),2)<max ){
+                food.isEated = true;
+                socket.emit('foodIsEat', food.id)
             }
         }
     }

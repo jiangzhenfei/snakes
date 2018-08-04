@@ -15,7 +15,7 @@ class Header {
         this.position.y = y;
         ctx.arc(x,y,r,0,2*Math.PI);
         ctx.fillStyle = color;
-        ctx.closePath();
+        //ctx.closePath();
         ctx.fill();
     }
 }
@@ -35,8 +35,7 @@ class Dot {
         this.position.y = y;
         ctx.arc(x,y,r,0,2*Math.PI);
         ctx.fillStyle = color;
-        ctx.closePath();
-        
+        //ctx.closePath();
         ctx.fill();
     }
 }
@@ -51,13 +50,12 @@ class EnemyDot {
         }
     }
     //关节绘制位置
-    draw(x,y,color){
+    draw(x,y){
         ctx.beginPath();
         this.position.x = x;
         this.position.y = y;
         ctx.arc(x,y,r,0,2*Math.PI);
         ctx.fillStyle = this.color;
-        ctx.closePath();
         ctx.fill();
     }
 }

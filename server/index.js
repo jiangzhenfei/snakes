@@ -34,16 +34,16 @@ let addRoom = (function(){
             allRoom[room].emit('foods', foods);//当前连接的推送而已
             socket.on('foodIsEat',function(e){
                 let id = e;
+                allRoom[room].emit('_thisFoodEat', e);//推送给房间所有的人
                 for (var i = 0;i < foods.length;i++){
                     if( foods[i].id === id){
                         foods.splice(i,1)
+                        let food = createFood()
+                        foods.push( food )
+                        allRoom[room].emit('addFood', food);//推送给房间所有的人
                         break;
                     }
                 }
-                allRoom[room].emit('_thisFoodEat', e);//推送给房间所有的人
-                let food = createFood()
-                foods.push( food )
-                allRoom[room].emit('addFood', food);//推送给房间所有的人
             })
 
             //断开连接(清除该房间号)

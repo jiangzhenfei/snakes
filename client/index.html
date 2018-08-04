@@ -13,7 +13,7 @@
     <div class="screen" style="width: 100%;height: 100%;position: relative;">
         <canvas id="myCanvas"></canvas>
         <div class="foodScreen">
-            
+            <canvas id="foodCanvas"></canvas>
         </div>
     </div>
     
@@ -22,7 +22,8 @@
         <div class="touch"></div>
     </div>
     <script>
-        
+        var start = 0;
+        var end = 0;
         let user = 'user' + Math.random().toFixed(6)*1000000;
         function bg1(){
             var r=Math.floor(Math.random()*256);
@@ -36,6 +37,9 @@
         var ctx=c.getContext("2d");
         var width = c.width;
         var height = c.height;
+
+        var f=document.getElementById("foodCanvas");
+        var foodCtx=f.getContext("2d");
        
         var r = 10;//蛇关节半径
         var foodRdius = 2;
@@ -53,7 +57,7 @@
             $("#foodCanvas").attr("height", $('.screen').height());
             width = c.width;
             height = c.height;
-            console.log(width,height)
+           
         };
         
         
